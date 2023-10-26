@@ -20,6 +20,9 @@ dependencies:
   riverpod: ^2.4.4
   flutter_riverpod: ^2.3.7
   grock: ^0.4.3
+  get_storage: ^2.1.1
+  http: ^1.1.0
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_test:
