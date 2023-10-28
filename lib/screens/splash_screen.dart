@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:restaurant/components/bottom_bar.dart';
 import 'package:restaurant/functions/navigator_ext.dart';
+import 'package:restaurant/screens/base_scafold.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       if (box.read("token") != null) {
-        pushAndPopBack(const BottomBar());
+        pushAndPopBack(const BaseScaffold());
       } else {
-        pushAndPopBack(const BottomBar());
+        pushAndPopBack(const BaseScaffold());
       }
     });
   }
