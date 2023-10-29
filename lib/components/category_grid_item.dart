@@ -75,13 +75,14 @@ class CategoryGridItem extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(12),
                   child: Column(
                     children: categoryItem.prices
                         .map<Widget>(
                           (price) => Row(
                             children: [
-                              Expanded(
+                              Flexible(
+                                flex: 2,
                                 child: Row(
                                   children: [
                                     Text(
@@ -89,16 +90,23 @@ class CategoryGridItem extends StatelessWidget {
                                       style:
                                           Theme.of(context).textTheme.bodySmall,
                                     ),
-                                    const Padding(
-                                        padding: EdgeInsets.only(right: 8)),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                     Text('${price.price.toInt()}₺'),
                                   ],
                                 ),
                               ),
-                              OutlinedButton(
-                                onPressed: () =>
-                                    onAddBasketPressed(categoryItem, price),
-                                child: const Text('Sepete ekle'),
+                              Flexible(
+                                flex: 3,
+                                child: OutlinedButton(
+                                  onPressed: () =>
+                                      onAddBasketPressed(categoryItem, price),
+                                  child: const Text(
+                                    'Sepete ekle',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
