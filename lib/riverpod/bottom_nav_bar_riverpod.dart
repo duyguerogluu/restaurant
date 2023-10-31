@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/basket_screen.dart';
 import 'package:restaurant/screens/food_detail_screen.dart';
-import 'package:restaurant/screens/home_screen.dart';
+import 'package:restaurant/screens/serial_menu_deneme_screen.dart';
+import 'package:restaurant/screens/main_menu_screen.dart';
 import 'package:restaurant/screens/menu_screen.dart';
 import 'package:restaurant/screens/menu_screen_deneme.dart';
+import 'package:restaurant/screens/users_profile_page_screen.dart';
 
 class BottomNavBarRiverpod extends ChangeNotifier {
   List<BottomNavigationBarItem> items = const [
@@ -52,7 +54,7 @@ class BottomNavBarRiverpod extends ChangeNotifier {
       case 2:
         return "Sepetim";
       case 3:
-        return "Ayarlar";
+        return "Hesabım";
       case 0:
       default:
         return "Anasayfa";
@@ -62,14 +64,14 @@ class BottomNavBarRiverpod extends ChangeNotifier {
   Widget body() {
     switch (currentIndex) {
       case 1:
-        return MenuScreen();
+        return MainMenuScreen();
       case 2:
         return BasketScreen();
       case 3:
-        return MenuScreenDeneme();
+        return UserProfilePageScreen();
       case 0:
       default:
-        return HomeScreen();
+        return Text("Anasayfa");
     }
   }
 }

@@ -1,10 +1,10 @@
-class ProductModel {
+class FoodDetailModel {
   bool isFavorite;
   String imagePath;
   String title;
   double price;
   String description;
-  ProductModel({
+  FoodDetailModel({
     required this.isFavorite,
     required this.imagePath,
     required this.title,

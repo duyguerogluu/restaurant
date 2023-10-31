@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant/models/product_model.dart';
+import 'package:restaurant/models/food_detail_model.dart';
 
 class FoodDetailWidget extends StatelessWidget {
-  ProductModel model;
+  FoodDetailModel model;
   Function setFavorite;
   Function setBasket;
 
