@@ -35,32 +35,30 @@ class SerialMenuScreen extends ConsumerWidget {
                   child: ListView.builder(
                     itemCount: 2,
                     itemBuilder: (BuildContext context, int index) {
-                      return Expanded(
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MealDetailsScreen()),
+                          );
+                        },
                         child: ListTile(
                           title: Stack(children: [
                             SizedBox(
                               height: deviceHeight * 0.3,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            MealDetailsScreen()),
-                                  );
-                                },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: deviceHeight * 0.3,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: SizedBox(
                                           height: deviceHeight * 0.3,
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.only(
@@ -72,47 +70,47 @@ class SerialMenuScreen extends ConsumerWidget {
                                                 "https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg"),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  // model.title,
-                                                  "Gimbablar",
-                                                  style: const TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                // model.title,
+                                                "Gimbablar",
+                                                style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
-                                                Text(
-                                                  // model.description,
-                                                  "dfjkhkjhfkjsdckjskjnds",
-                                                  style: const TextStyle(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w300,
-                                                    color: Colors.grey,
-                                                  ),
+                                              ),
+                                              Text(
+                                                // model.description,
+                                                "dfjkhkjhfkjsdckjskjnds",
+                                                style: const TextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w300,
+                                                  color: Colors.grey,
                                                 ),
-                                                Text(
-                                                  // "${model.price}" + "TL",
-                                                  "100TL",
-                                                  style: const TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w800,
-                                                    color: Colors.grey,
-                                                  ),
+                                              ),
+                                              Text(
+                                                // "${model.price}" + "TL",
+                                                "100TL",
+                                                style: const TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w800,
+                                                  color: Colors.grey,
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -144,7 +142,7 @@ class SerialMenuScreen extends ConsumerWidget {
                                         children: [
                                           // Icon(Icons.shopping_cart),
                                           // SizedBox(width: 8),
-                                          Text('Sepete Ekle'),
+                                          Text('Siparişi Ver'),
                                         ],
                                       ),
                                     ),

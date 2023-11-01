@@ -20,38 +20,64 @@ class MealDetailsScreen extends ConsumerWidget {
       body: Center(
         child: Stack(
           children: [
-            Expanded(
-              child: Container(
-                height: 500,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(24),
-                          child: Column(
-                            //mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Image.network(
-                                  'https://picsum.photos/512',
-                                  fit: BoxFit.cover,
-                                ),
+            Container(
+              height: 500,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: Column(
+                          //mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Flexible(
+                              flex: 3,
+                              child: Image.network(
+                                'https://picsum.photos/512',
+                                loadingBuilder: (context, child,
+                                        loadingProgress) =>
+                                    loadingProgress?.cumulativeBytesLoaded ==
+                                            loadingProgress?.expectedTotalBytes
+                                        ? child
+                                        : const SizedBox(
+                                            height: 128,
+                                            child: Center(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  CircularProgressIndicator(),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                width: MediaQuery.of(context).size.width,
+                                fit: BoxFit.cover,
                               ),
-                              Padding(
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Text(
                                   "Rose Debokki",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 16),
+                                      fontSize: 20),
                                 ),
                               ),
-                              Padding(
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Text(
                                   "sebze olarak lahana,havuç ve soğan vardır. (ACI SEVİYESİ-2)",
@@ -60,22 +86,13 @@ class MealDetailsScreen extends ConsumerWidget {
                                       fontSize: 16),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
-                                  "170",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 16),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Positioned.fill(
@@ -83,30 +100,44 @@ class MealDetailsScreen extends ConsumerWidget {
                 alignment: Alignment.bottomRight,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      debugPrint('Ürün sepete eklendi!');
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => BasketScreen()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                        // shape: RoundedRectangleBorder(
-                        //   borderRadius: BorderRadius.circular(10),
-                        // ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          "170TL",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 17),
                         ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // Icon(Icons.shopping_cart),
-                          // SizedBox(width: 8),
-                          Text('Sepete Ekle'),
-                        ],
                       ),
-                    ),
+                      ElevatedButton(
+                        onPressed: () {
+                          debugPrint('Ürün sepete eklendi!');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BasketScreen()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                            // shape: RoundedRectangleBorder(
+                            //   borderRadius: BorderRadius.circular(10),
+                            // ),
+                            ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              // Icon(Icons.shopping_cart),
+                              // SizedBox(width: 8),
+                              Text('Sipariş ver'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

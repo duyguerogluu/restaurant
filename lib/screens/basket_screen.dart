@@ -20,8 +20,9 @@ class _BasketScreenState extends ConsumerState<BasketScreen> {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             leading: CircleAvatar(
+              radius: 32,
               backgroundImage:
-                  AssetImage('assets/product_image.png'), // Ürün resmi
+                  NetworkImage("https://i.stack.imgur.com/l60Hf.png"),
             ),
             title: Text('Ürün adı'), // Ürün adı
             subtitle: Text('Ürün açıklaması'), // Ürün açıklaması
@@ -45,7 +46,7 @@ class _BasketScreenState extends ConsumerState<BasketScreen> {
                   onPressed: () {
                     // Ödeme işlemi
                   },
-                  child: Text('Ödeme Yap'),
+                  child: Text('Siparişi Gönder'),
                 ),
               ),
             ],

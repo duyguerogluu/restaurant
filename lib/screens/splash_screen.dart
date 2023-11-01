@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:restaurant/components/bottom_bar.dart';
 import 'package:restaurant/functions/navigator_ext.dart';
+import 'package:restaurant/loginPage/login_page.dart';
 import 'package:restaurant/screens/base_scafold.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (box.read("token") != null) {
         pushAndPopBack(const BaseScaffold());
       } else {
-        pushAndPopBack(const BaseScaffold());
+        pushAndPopBack(const LoginPage());
       }
     });
   }

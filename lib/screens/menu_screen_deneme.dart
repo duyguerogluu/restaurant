@@ -30,7 +30,7 @@ class _MenuScreenDenemeState extends State<MenuScreenDeneme> {
                   Text(category.categoryDesc),
                   CategoryGrid(
                     categoryItems: category.categoryItems,
-                    gridCount: 2,
+                    gridCount: 1,
                   ),
                 ],
               );
