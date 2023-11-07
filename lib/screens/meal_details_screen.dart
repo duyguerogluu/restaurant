@@ -11,7 +11,7 @@ class MealDetailsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -20,7 +20,7 @@ class MealDetailsScreen extends ConsumerWidget {
       body: Center(
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               height: 500,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -63,10 +63,10 @@ class MealDetailsScreen extends ConsumerWidget {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            Flexible(
+                            const Flexible(
                               flex: 1,
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: EdgeInsets.all(16.0),
                                 child: Text(
                                   "Rose Debokki",
                                   style: TextStyle(
@@ -75,10 +75,10 @@ class MealDetailsScreen extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            Flexible(
+                            const Flexible(
                               flex: 1,
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: EdgeInsets.all(16.0),
                                 child: Text(
                                   "sebze olarak lahana,havuç ve soğan vardır. (ACI SEVİYESİ-2)",
                                   style: TextStyle(
@@ -103,8 +103,8 @@ class MealDetailsScreen extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
+                      const Padding(
+                        padding: EdgeInsets.all(16.0),
                         child: Text(
                           "170TL",
                           style: TextStyle(
@@ -117,7 +117,7 @@ class MealDetailsScreen extends ConsumerWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BasketScreen()),
+                                builder: (context) => const BasketScreen()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

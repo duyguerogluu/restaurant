@@ -9,7 +9,6 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   bool _ishidden = true;
   bool isProcessing = false;
-  List<int> _genders = [0, 1];
   bool _pageLogin = true;
 
   String initValue = "Select your Birth Date";
@@ -27,7 +26,6 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    int currentValue = _genders[0];
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -69,38 +67,61 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                           child: TextFormField(
-                            controller: signup.username,
+                            controller: signup.adi,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
                                 color: Color.fromRGBO(143, 148, 251, 1)),
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "UserName",
+                              hintText: "Ad",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
                         ),
-                        // Container(
-                        //   padding: const EdgeInsets.all(4.0),
-                        //   decoration: BoxDecoration(
-                        //     border: Border(
-                        //       bottom: BorderSide(
-                        //         color: Colors.grey.shade200,
-                        //       ),
-                        //     ),
-                        //   ),
-                        //   child: TextFormField(
-                        //     controller: signup.,
-                        //     cursorColor: Colors.purpleAccent,
-                        //     style: const TextStyle(
-                        //         color: Color.fromRGBO(143, 148, 251, 1)),
-                        //     decoration: InputDecoration(
-                        //       border: InputBorder.none,
-                        //       hintText: "Last Name",
-                        //       hintStyle: TextStyle(color: Colors.grey[400]),
-                        //     ),
-                        //   ),
-                        // ),
+                        Container(
+                          padding: const EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.grey.shade200,
+                              ),
+                            ),
+                          ),
+                          child: TextFormField(
+                            controller: signup.soyadi,
+                            cursorColor: Colors.purpleAccent,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(143, 148, 251, 1)),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Soyad",
+                              hintStyle: TextStyle(color: Colors.grey[400]),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.grey.shade200,
+                              ),
+                            ),
+                          ),
+                          child: TextFormField(
+                            controller: signup.telefon,
+                            keyboardType: TextInputType.phone,
+                            cursorColor: Colors.purpleAccent,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(143, 148, 251, 1)),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Telefon Numarası",
+                              hintStyle: TextStyle(color: Colors.grey[400]),
+                            ),
+                          ),
+                        ),
+
                         Container(
                           padding: const EdgeInsets.all(4.0),
                           decoration: BoxDecoration(
@@ -118,29 +139,7 @@ class _SignupPageState extends State<SignupPage> {
                                 color: Color.fromRGBO(143, 148, 251, 1)),
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Email address",
-                              hintStyle: TextStyle(color: Colors.grey[400]),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(4.0),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey.shade200,
-                              ),
-                            ),
-                          ),
-                          child: TextFormField(
-                            controller: signup.phone,
-                            keyboardType: TextInputType.phone,
-                            cursorColor: Colors.purpleAccent,
-                            style: const TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Phone Number",
+                              hintText: "Email Adres",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
@@ -156,7 +155,7 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                             ),
                             child: TextFormField(
-                              controller: signup.password,
+                              controller: signup.sifre,
                               cursorColor: Colors.purpleAccent,
                               obscureText: _ishidden ? true : false,
                               style: TextStyle(
@@ -169,95 +168,13 @@ class _SignupPageState extends State<SignupPage> {
                                   onPressed: _toggleVisibility,
                                 ),
                                 border: InputBorder.none,
-                                hintText: "Password",
+                                hintText: "Şifre",
                                 hintStyle: TextStyle(
                                   color: Colors.grey[400],
                                 ),
                               ),
                             )),
                         //ConfirmPassword(),
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey.shade200,
-                              ),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              GestureDetector(
-                                  child: Icon(Icons.calendar_today),
-                                  onTap: () async {
-                                    const minAge = 18;
-                                    final now = DateTime.now();
-                                    final eighteen =
-                                        DateTime(now.year - minAge);
-                                    final last =
-                                        DateTime(eighteen.year, 12, 31);
-                                    final datePick = await showDatePicker(
-                                        context: context,
-                                        initialDate: eighteen,
-                                        firstDate: DateTime(1900),
-                                        lastDate: last);
-                                    if (datePick != null) {
-                                      setState(() {
-                                        birthDate = datePick;
-                                        isDateSelected = true;
-                                        debugPrint(birthDateInString);
-                                      });
-                                    }
-                                  }),
-                              Text(birthDateInString ?? "-/-/-"),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(4.0),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: Colors.grey.shade200,
-                        ),
-                      ),
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        ListTile(
-                          title: Text("Female"),
-                          leading: Radio(
-                            groupValue: currentValue,
-                            value: _genders[0],
-                            onChanged: (value) {
-                              setState(() {
-                                currentValue = _genders[0];
-                                signup.sex = currentValue;
-                                debugPrint("Current value: " +
-                                    currentValue.toString());
-                              });
-                            },
-                          ),
-                        ),
-                        ListTile(
-                          title: Text("Male"),
-                          leading: Radio(
-                            groupValue: currentValue,
-                            value: _genders[1],
-                            onChanged: (value) {
-                              setState(() {
-                                currentValue = _genders[1];
-                                signup.sex = currentValue;
-                                debugPrint("Current value: " +
-                                    currentValue.toString());
-                              });
-                            },
-                          ),
-                        ),
                       ],
                     ),
                   ),

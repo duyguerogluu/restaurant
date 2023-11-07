@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant/functions/duygu_nav.dart';
+import 'package:restaurant/screens/announcement_screen.dart';
 import 'package:restaurant/screens/basket_screen.dart';
-import 'package:restaurant/screens/food_detail_screen.dart';
-import 'package:restaurant/screens/serial_menu_deneme_screen.dart';
 import 'package:restaurant/screens/main_menu_screen.dart';
-import 'package:restaurant/screens/menu_screen.dart';
-import 'package:restaurant/screens/menu_screen_deneme.dart';
 import 'package:restaurant/screens/users_profile_page_screen.dart';
 
 class BottomNavBarRiverpod extends ChangeNotifier {
+  BuildContext? context;
   List<BottomNavigationBarItem> items = const [
     BottomNavigationBarItem(
       icon: Icon(
@@ -19,24 +18,17 @@ class BottomNavBarRiverpod extends ChangeNotifier {
     ),
     BottomNavigationBarItem(
       icon: Icon(
-        CupertinoIcons.heart,
-        color: Colors.black54,
-      ),
-      label: "Menü",
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(
-        CupertinoIcons.bag,
+        CupertinoIcons.cart,
         color: Colors.black54,
       ),
       label: "Sepetim",
     ),
     BottomNavigationBarItem(
       icon: Icon(
-        CupertinoIcons.bag,
+        CupertinoIcons.person,
         color: Colors.black54,
       ),
-      label: "Sepetim",
+      label: "Profil",
     ),
   ];
 
@@ -50,28 +42,46 @@ class BottomNavBarRiverpod extends ChangeNotifier {
   String appbarTitle() {
     switch (currentIndex) {
       case 1:
-        return "Menü";
-      case 2:
         return "Sepetim";
-      case 3:
+      case 2:
         return "Hesabım";
       case 0:
       default:
-        return "Anasayfa";
+        return "Menü";
+    }
+  }
+
+  Widget appbarIcon() {
+    switch (currentIndex) {
+      case 1:
+        return const SizedBox();
+      case 2:
+        return IconButton(
+          icon: const Icon(Icons.notifications),
+          onPressed: () {
+            DuyguNav.push(const AnnouncementScreen());
+          },
+        );
+      case 0:
+      default:
+        return IconButton(
+          icon: const Icon(Icons.notifications),
+          onPressed: () {
+            DuyguNav.push(const AnnouncementScreen());
+          },
+        );
     }
   }
 
   Widget body() {
     switch (currentIndex) {
       case 1:
-        return MainMenuScreen();
+        return const BasketScreen();
       case 2:
-        return BasketScreen();
-      case 3:
-        return UserProfilePageScreen();
+        return const UserProfilePageScreen();
       case 0:
       default:
-        return Text("Anasayfa");
+        return MainMenuScreen();
     }
   }
 }

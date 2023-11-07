@@ -1,11 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant/components/bottom_bar.dart';
-import 'package:restaurant/components/food_detail.dart';
-import 'package:restaurant/riverpod/food_detail_riverpod.dart';
-import 'package:restaurant/riverpod/riverpod_management.dart';
-import 'package:restaurant/screens/menu_screen.dart';
 
 class FoodDetailScreen extends ConsumerStatefulWidget {
   const FoodDetailScreen({

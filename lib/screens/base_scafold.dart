@@ -23,11 +23,10 @@ class _BaseScaffoldState extends ConsumerState<BaseScaffold> {
     return Scaffold(
       bottomNavigationBar: const BottomNavBar(),
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            watch.appbarTitle(),
-          ),
-        ),
+        title: Text(watch.appbarTitle()),
+        actions: <Widget>[
+          watch.appbarIcon(),
+        ],
       ),
       body: watch.body(),
     );

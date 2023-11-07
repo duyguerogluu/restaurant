@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/loginPage/signup_page.dart';
 import 'package:restaurant/riverpod/riverpod_management.dart';
+import 'package:restaurant/screens/base_scafold.dart';
+import 'package:restaurant/screens/menu_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +14,14 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _pageLogin = true;
+  @override
+  void initState() {
+    super.initState();
+    if (kDebugMode) {
+      login.telNo.text = "05554443311";
+      login.passwprd.text = "10";
+    }
+  }
 
   void _togglePage(bool _switchme) {
     setState(
@@ -190,8 +201,22 @@ class _LoginPageState extends State<LoginPage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 16.0),
                               child: ElevatedButton(
-                                onPressed: () {
-                                  login.fetchLogin();
+                                onPressed: () async {
+                                  final res = await login.fetchLogin();
+                                  if (res == true) {
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => BaseScaffold()),
+                                    );
+                                  } else {
+                                    // ignore: use_build_context_synchronously
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content:
+                                                Text("Giriş yapılamadı!")));
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: _pageLogin

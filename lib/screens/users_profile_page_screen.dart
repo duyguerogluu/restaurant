@@ -18,7 +18,7 @@ class UserProfilePageScreen extends ConsumerWidget {
             CircleAvatar(
               radius: 50.0,
               backgroundImage:
-                  AssetImage('assets/profile_picture.jpg'), // Profil resmi
+                  NetworkImage("https://i.stack.imgur.com/l60Hf.png"),
             ),
             SizedBox(height: 20.0),
             Text(

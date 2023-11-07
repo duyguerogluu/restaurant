@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant/functions/navigator_ext.dart';
 import 'package:restaurant/functions/svg.dart';
 import 'package:restaurant/riverpod/food_detail_riverpod.dart';
-import 'package:restaurant/riverpod/riverpod_management.dart';
 import 'package:restaurant/screens/food_detail_screen.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -51,7 +49,6 @@ class MyCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var size = MediaQuery.of(context).size;
     var width = size.width;
-    var height = size.height;
     return InkWell(
       onTap: () {
         Navigator.push(

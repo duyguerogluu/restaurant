@@ -12,9 +12,6 @@ class _BasketScreenState extends ConsumerState<BasketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sepetim'),
-      ),
       body: ListView.builder(
         itemCount: 5, // Örnek ürün sayısı
         itemBuilder: (BuildContext context, int index) {

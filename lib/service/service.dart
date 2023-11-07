@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:restaurant/models/annoucement_model.dart';
+import 'package:restaurant/models/category_item_mmodel.dart';
 import 'package:restaurant/models/login_model.dart';
 import 'package:restaurant/models/signup_model.dart';
 import 'package:restaurant/models/user_model.dart';
@@ -13,23 +15,28 @@ class Service {
   Future<LoginModel?> loginCall(
       {required String telNo, required String password}) async {
     Map<String, String> jsonData = {
-      "login": telNo,
-      "password": password,
+      "Telefon": telNo,
+      "Sifre": password,
     };
 
-    var response = await http.post(Uri.parse(baseUrl + "/login"),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(jsonData));
+    final response = await http.post(
+      Uri.parse("$baseUrl/KullaniciGiris"),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(jsonData),
+    );
+    print(response.toString());
 
     if (response.statusCode == 200) {
+      debugPrint("Response Body: ${response.body}");
       var result = LoginModel.fromJson(jsonDecode(response.body));
 
       return result;
-    } else {
-      throw ('Failed to login ${response.statusCode}');
     }
+
+    return LoginModel(
+        isError: true, errorMsg: "Giriş yapılamadı! Error: ${response.body}");
   }
 
   // Usercall
@@ -90,28 +97,28 @@ class Service {
 
   //Singup
   Future<SignupModel?> signupCall({
-    required String username,
+    required String adi,
+    required String soyadi,
     required String email,
-    required String phone,
-    required String password,
-    required int sex,
+    required String telefon,
+    required String sifre,
   }) async {
     var user = 'your_proxy_username';
     var pass = 'your_proxy_password';
     var basicAuth = 'Basic ' + base64Encode(utf8.encode('$user:$pass'));
 
     Map<String, dynamic> jsonData = {
-      "username": username,
+      "adi": adi,
+      "soyadi": soyadi,
+      "telefon": telefon,
       "email": email,
-      "phone": phone,
-      "password": password,
-      "sex": sex,
+      "sifre": sifre,
     };
 
     debugPrint("AUTH: $basicAuth");
 
     var response = await http.post(
-      Uri.parse(baseUrl + "/signup"),
+      Uri.parse(baseUrl + "/KullaniciKaydetGuncelle"),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': basicAuth,
@@ -128,5 +135,43 @@ class Service {
       debugPrint("Response Status Code signupCall: ${response.statusCode}");
       return null;
     }
+  }
+
+  //Duyurular
+  Future<List<AnnouncementModel>?> announcementCall() async {
+    var response = await http.get(Uri.parse(baseUrl + "/GenelDuyuruListesi"));
+
+    debugPrint("Response Status Code userCall: ${response.statusCode}");
+    debugPrint("Response Body: ${response.body}");
+
+    if (response.statusCode == 200) {
+      List announcements = jsonDecode(response.body);
+      return announcements
+          .map<AnnouncementModel>(
+            (element) => AnnouncementModel.fromJson(element),
+          )
+          .toList();
+    } else {
+      throw ('Failed to get data with status code: ${response.statusCode}');
+    }
+  }
+
+  Future<List<CategoryItemModel>?> categoryCall() async {
+    var response = await http.get(Uri.parse('$baseUrl/Kategoriler'));
+
+    debugPrint("Response Status Code categoryCall: ${response.statusCode}");
+    debugPrint("Response Body: ${response.body}");
+
+    if (response.statusCode != 200 || response.body == 'null') {
+      return null;
+    }
+
+    var json = jsonDecode(response.body) as List;
+
+    return json
+        .map<CategoryItemModel>(
+          (e) => CategoryItemModel.fromJson(e),
+        )
+        .toList();
   }
 }
