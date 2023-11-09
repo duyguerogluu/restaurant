@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/loginPage/login_page.dart';
+import 'package:restaurant/screens/offer_screen.dart';
 import 'package:restaurant/screens/splash_screen.dart';
 
 import 'functions/duygu_nav.dart';
@@ -24,11 +25,12 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => const SplashScreen(),
         '/login': (context) => const LoginPage(),
         '/main': (context) => const MenuScreen(),
+        '/offer': (context) => const OfferScreen(),
         '/fooddetail': (context) => const FoodDetailScreen(
               index: 0,
             ),
       },
-      title: 'Flutter Demo',
+      title: 'restaurants',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

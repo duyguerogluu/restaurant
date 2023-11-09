@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:restaurant/models/menu_by_category_model.dart';
+import 'package:restaurant/riverpod/riverpod_management.dart';
 import 'package:restaurant/screens/basket_screen.dart';
 import 'package:restaurant/screens/serial_menu_deneme_screen.dart';
 
 class MealDetailsScreen extends ConsumerWidget {
+  final MenuByCategoryModel model;
+
+  const MealDetailsScreen({super.key, required this.model});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -63,24 +69,24 @@ class MealDetailsScreen extends ConsumerWidget {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            const Flexible(
+                            Flexible(
                               flex: 1,
                               child: Padding(
                                 padding: EdgeInsets.all(16.0),
                                 child: Text(
-                                  "Rose Debokki",
+                                  model.baslik ?? 'baslik',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 20),
                                 ),
                               ),
                             ),
-                            const Flexible(
+                            Flexible(
                               flex: 1,
                               child: Padding(
                                 padding: EdgeInsets.all(16.0),
                                 child: Text(
-                                  "sebze olarak lahana,havuç ve soğan vardır. (ACI SEVİYESİ-2)",
+                                  model.icerik ?? 'icerik',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 16),

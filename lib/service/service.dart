@@ -1,11 +1,12 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/annoucement_model.dart';
 import 'package:restaurant/models/category_item_mmodel.dart';
 import 'package:restaurant/models/login_model.dart';
+import 'package:restaurant/models/menu_by_category_model.dart';
+import 'package:restaurant/models/offer_model.dart';
 import 'package:restaurant/models/signup_model.dart';
 import 'package:restaurant/models/user_model.dart';
 import 'package:restaurant/url/url.dart';
@@ -156,6 +157,26 @@ class Service {
     }
   }
 
+//Kampanyalar
+  Future<List<OfferModel>?> offerCall() async {
+    var response = await http.get(Uri.parse(baseUrl + "/Kampanyalar"));
+
+    debugPrint("Response Status Code userCall: ${response.statusCode}");
+    debugPrint("Response Body: ${response.body}");
+
+    if (response.statusCode == 200) {
+      List offers = jsonDecode(response.body);
+      return offers
+          .map<OfferModel>(
+            (element) => OfferModel.fromJson(element),
+          )
+          .toList();
+    } else {
+      throw ('Failed to get data with status code: ${response.statusCode}');
+    }
+  }
+
+//Category
   Future<List<CategoryItemModel>?> categoryCall() async {
     var response = await http.get(Uri.parse('$baseUrl/Kategoriler'));
 
@@ -174,4 +195,36 @@ class Service {
         )
         .toList();
   }
+
+//KategoriyeGöreMenu
+  Future<List<MenuByCategoryModel>?> menuByCategoryCall(
+    int Id,
+  ) async {
+    Map<String, dynamic> jsonData = {
+      "Id": Id,
+    };
+    var response = await http.post(
+      Uri.parse(baseUrl + "/KategoriyeGoreMenu"),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(jsonData),
+    );
+
+    if (response.statusCode == 200) {
+      debugPrint("Response Body: ${response.body}");
+      debugPrint("Response Status Code signupCall: ${response.statusCode}");
+      debugPrint("Kategoriye göre menü geldi");
+
+      List menubyCategory = jsonDecode(response.body);
+      return menubyCategory
+          .map<MenuByCategoryModel>(
+            (element) => MenuByCategoryModel.fromJson(element),
+          )
+          .toList();
+    } else {
+      debugPrint("Response Status Code signupCall: ${response.statusCode}");
+      return null;
+    }
+  } 
 }
