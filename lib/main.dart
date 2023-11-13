@@ -5,6 +5,7 @@ import 'package:restaurant/screens/offer_screen.dart';
 import 'package:restaurant/screens/splash_screen.dart';
 
 import 'functions/duygu_nav.dart';
+import 'models/menu_by_category_model.dart';
 import 'screens/food_detail_screen.dart';
 import 'screens/menu_screen.dart';
 
@@ -13,6 +14,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static final basketList = <MenuByCategoryModel>[];
+
   const MyApp({super.key});
 
   // This widget is the root of your application.

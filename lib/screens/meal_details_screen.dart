@@ -44,7 +44,8 @@ class MealDetailsScreen extends ConsumerWidget {
                             Flexible(
                               flex: 3,
                               child: Image.network(
-                                'https://picsum.photos/512',
+                                'https://toronto.goyazilim.com/${model.resimYolu}' ??
+                                    'https://picsum.photos/512',
                                 loadingBuilder: (context, child,
                                         loadingProgress) =>
                                     loadingProgress?.cumulativeBytesLoaded ==
@@ -109,10 +110,10 @@ class MealDetailsScreen extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(16.0),
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
                         child: Text(
-                          "170TL",
+                          model.fiyat.toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 17),
                         ),

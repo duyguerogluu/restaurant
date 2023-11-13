@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/functions/duygu_nav.dart';
+import 'package:restaurant/main.dart';
 import 'package:restaurant/models/menu_by_category_model.dart';
+import 'package:restaurant/riverpod/basket_riverpod.dart';
 import 'package:restaurant/riverpod/riverpod_management.dart';
 import 'package:restaurant/screens/basket_screen.dart';
 import 'package:restaurant/screens/meal_details_screen.dart';
@@ -17,6 +19,8 @@ class SerialMenuScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     double deviceHeight = MediaQuery.of(context).size.height;
+    var basketList = ref.read(
+        basketRiverpodd); // https://pub.dev/documentation/flutter_riverpod/latest/flutter_riverpod/ChangeNotifierProvider-class.html
 
     return Scaffold(
       appBar: AppBar(
@@ -97,8 +101,10 @@ class SerialMenuScreen extends ConsumerWidget {
                                                         Radius.circular(10),
                                                   ),
                                                   child: Image.network(
-                                                      fit: BoxFit.fill,
-                                                      "https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg"),
+                                                    fit: BoxFit.cover,
+                                                    'https://toronto.goyazilim.com/${model.resimYolu}' ??
+                                                        "https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg",
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -167,6 +173,16 @@ class SerialMenuScreen extends ConsumerWidget {
                                         child: ElevatedButton(
                                           onPressed: () {
                                             debugPrint('Ürün sepete eklendi!');
+
+                                            MyApp.basketList.add(model);
+
+/*
+                                            var basket =
+                                                ref.read(basketRiverpodd);
+                                            basket.add(model); //ekledik şimdi güncellicez
+                                             BasketRiverpod basketRiverpod = context.read<BasketRiverpod>();
+basketRiverpod.basketList = [...basketRiverpod.basketList];
+*/
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(

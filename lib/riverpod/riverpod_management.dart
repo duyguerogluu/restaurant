@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/riverpod/announcement_riverpod.dart';
+import 'package:restaurant/riverpod/basket_riverpod.dart';
 import 'package:restaurant/riverpod/bottom_nav_bar_riverpod.dart';
 import 'package:restaurant/riverpod/category_riverpod.dart';
 import 'package:restaurant/riverpod/food_detail_riverpod.dart';
@@ -17,3 +18,4 @@ final announcement = AnnouncementRiverpod();
 final category = CategoryRiverpod();
 final offer = OfferRiverpod();
 final menuByCategory = MenuByCategoryRiverpod();
+final basketRiverpodd = ChangeNotifierProvider((_) => BasketRiverpod());

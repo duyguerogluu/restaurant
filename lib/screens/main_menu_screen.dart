@@ -59,18 +59,26 @@ class MainMenuScreen extends ConsumerWidget {
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Image.network(
-                                  'https://picsum.photos/512',
-                                  height: 128,
-                                  fit: BoxFit.cover,
-                                  width: deviceWidth * 0.4,
+                                Flexible(
+                                  flex: 5,
+                                  child: Image.network(
+                                    'https://toronto.goyazilim.com/${category.resimYolu}' ??
+                                        'https://picsum.photos/512',
+                                    height: 128,
+                                    fit: BoxFit.cover,
+                                    width: deviceWidth * 0.4,
+                                  ),
                                 ),
-                                SizedBox(height: 10),
-                                Text(
-                                  category.adi ?? "categoryname",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16),
+                                Flexible(
+                                  child: SizedBox(height: 10),
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    category.adi ?? "categoryname",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 14),
+                                  ),
                                 ),
                               ],
                             ),

@@ -1,29 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:restaurant/main.dart';
 
-class BasketScreen extends ConsumerStatefulWidget {
+class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _BasketScreenState();
+  State<BasketScreen> createState() => _BasketScreenState();
 }
 
-class _BasketScreenState extends ConsumerState<BasketScreen> {
+class _BasketScreenState extends State<BasketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: 5, // Örnek ürün sayısı
+        itemCount: MyApp.basketList.length, // Örnek ürün sayısı
         itemBuilder: (BuildContext context, int index) {
+          var item = MyApp.basketList[index];
+
           return ListTile(
             leading: CircleAvatar(
               radius: 32,
               backgroundImage:
                   NetworkImage("https://i.stack.imgur.com/l60Hf.png"),
             ),
-            title: Text('Ürün adı'), // Ürün adı
-            subtitle: Text('Ürün açıklaması'), // Ürün açıklaması
-            trailing: Text('₺20'), // Ürün fiyatı
+            title: Text(item.baslik ?? ''), // Ürün adı
+            subtitle: Text(item.icerik ?? ''), // Ürün açıklaması
+            trailing: Column(
+              children: [
+                Flexible(child: Text((item.fiyat ?? 0.0).toString())),
+                Flexible(
+                    child: SizedBox(
+                  height: 8,
+                )),
+                Flexible(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      MyApp.basketList.remove(item);
+                      setState(() {});
+                    },
+                    child: Text("Çıkar"),
+                  ),
+                ),
+              ],
+            ), // Ürün fiyatı
           );
         },
       ),
