@@ -4,7 +4,6 @@ import 'package:restaurant/loginPage/login_page.dart';
 import 'package:restaurant/service/service.dart';
 
 class SignupRiverpod extends ChangeNotifier {
-  final service = Service();
   TextEditingController adi = TextEditingController();
   TextEditingController soyadi = TextEditingController();
   TextEditingController telefon = TextEditingController();
@@ -15,7 +14,7 @@ class SignupRiverpod extends ChangeNotifier {
     debugPrint("fetchSignup çalıştı");
     loadingPopup();
 
-    var result = await service.signupCall(
+    var result = await Service.signupCall(
       adi: adi.text,
       soyadi: soyadi.text,
       email: email.text,
@@ -23,6 +22,6 @@ class SignupRiverpod extends ChangeNotifier {
       sifre: sifre.text,
     );
 
-    //Grock.toRemove(const LoginPage());
+    //Grock.toRemo
   }
 }

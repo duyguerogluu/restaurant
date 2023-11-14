@@ -12,7 +12,7 @@ class CategoryGrid extends StatelessWidget {
   final int gridCount;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     var children = <Widget>[];
     var temp = <Widget>[];
     for (var item in categoryItems) {

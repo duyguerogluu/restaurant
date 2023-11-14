@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:restaurant/main.dart';
 import 'package:restaurant/models/menu_by_category_model.dart';
 import 'package:restaurant/riverpod/riverpod_management.dart';
 import 'package:restaurant/screens/basket_screen.dart';
@@ -121,10 +122,13 @@ class MealDetailsScreen extends ConsumerWidget {
                       ElevatedButton(
                         onPressed: () {
                           debugPrint('Ürün sepete eklendi!');
+
+                          MyApp.basketList.add(model);
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BasketScreen()),
+                                builder: (context) => BasketScreen()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

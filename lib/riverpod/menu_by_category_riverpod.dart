@@ -5,13 +5,11 @@ import 'package:restaurant/riverpod/riverpod_management.dart';
 import 'package:restaurant/service/service.dart';
 
 class MenuByCategoryRiverpod extends ChangeNotifier {
-  final service = Service();
-
   Future<List<MenuByCategoryModel>?> menuByCategoryCall(int category) async {
     debugPrint("getMenuByCategory çalıştııı !!!!!!!!!!!!!!!!!");
 
     try {
-      var value = await service.menuByCategoryCall(category);
+      var value = await Service.menuByCategoryCall(category);
 
       if (value != null) {
         return value;

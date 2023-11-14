@@ -13,9 +13,9 @@ final fooddetailRiverpod = ChangeNotifierProvider((_) => FoodDetailRiverpod());
 final bottomNavBarRiverpod =
     ChangeNotifierProvider((_) => BottomNavBarRiverpod());
 final login = LoginRiverpod();
-final signup = SignupRiverpod();
 final announcement = AnnouncementRiverpod();
 final category = CategoryRiverpod();
 final offer = OfferRiverpod();
 final menuByCategory = MenuByCategoryRiverpod();
 final basketRiverpodd = ChangeNotifierProvider((_) => BasketRiverpod());
+final signup = ChangeNotifierProvider((_) => SignupRiverpod());

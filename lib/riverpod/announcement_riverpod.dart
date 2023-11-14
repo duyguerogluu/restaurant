@@ -3,13 +3,11 @@ import 'package:restaurant/models/annoucement_model.dart';
 import 'package:restaurant/service/service.dart';
 
 class AnnouncementRiverpod extends ChangeNotifier {
-  final service = Service();
-
   Future<List<AnnouncementModel>?> getAnnouncement() async {
     debugPrint("getchannoucement çalıştııı !!!!!!!!!!!!!!!!!");
 
     try {
-      var value = await service.announcementCall();
+      var value = await Service.announcementCall();
 
       if (value != null) {
         return value;

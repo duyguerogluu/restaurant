@@ -20,14 +20,6 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
     });
   }
 
-  bool _isHidden = true;
-
-  void _toggleVisibility() {
-    setState(() {
-      _isHidden = !_isHidden;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,7 +31,7 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
           ),
         ),
         body: Column(
-          children: [
+          children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -74,7 +66,9 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
                     _togglePage(false);
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: _pageAnn ? Colors.white : Colors.white,
+                    primary: _pageAnn
+                        ? Colors.transparent
+                        : const Color.fromRGBO(143, 148, 251, 1),
                     onPrimary: Colors.transparent,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 15),

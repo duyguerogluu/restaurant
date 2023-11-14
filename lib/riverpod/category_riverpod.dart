@@ -3,13 +3,11 @@ import 'package:restaurant/models/category_item_mmodel.dart';
 import 'package:restaurant/service/service.dart';
 
 class CategoryRiverpod extends ChangeNotifier {
-  final service = Service();
-
   Future<List<CategoryItemModel>?> getCategory() async {
     debugPrint("getCategory çalıştııı !!!!!!!!!!!!!!!!!");
 
     try {
-      var value = await service.categoryCall();
+      var value = await Service.categoryCall();
 
       if (value != null) {
         return value;

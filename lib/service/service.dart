@@ -12,8 +12,11 @@ import 'package:restaurant/models/user_model.dart';
 import 'package:restaurant/url/url.dart';
 
 class Service {
+  // Don't create a new class, use services directly
+  Service._();
+
   //Login
-  Future<LoginModel?> loginCall(
+  static Future<LoginModel?> loginCall(
       {required String telNo, required String password}) async {
     Map<String, String> jsonData = {
       "Telefon": telNo,
@@ -41,7 +44,7 @@ class Service {
   }
 
   // Usercall
-  Future<UserModel?> userCall() async {
+  static Future<UserModel?> userCall() async {
     String token = await GetStorage().read("token");
 
     Map<String, dynamic> jsonData = {
@@ -97,7 +100,7 @@ class Service {
   }
 
   //Singup
-  Future<SignupModel?> signupCall({
+  static Future<SignupModel?> signupCall({
     required String adi,
     required String soyadi,
     required String email,
@@ -123,7 +126,6 @@ class Service {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': basicAuth,
-        
       },
       body: jsonEncode(jsonData),
     );
@@ -140,7 +142,7 @@ class Service {
   }
 
   //Duyurular
-  Future<List<AnnouncementModel>?> announcementCall() async {
+  static Future<List<AnnouncementModel>?> announcementCall() async {
     var response = await http.get(Uri.parse(baseUrl + "/GenelDuyuruListesi"));
 
     debugPrint("Response Status Code userCall: ${response.statusCode}");
@@ -159,7 +161,7 @@ class Service {
   }
 
 //Kampanyalar
-  Future<List<OfferModel>?> offerCall() async {
+  static Future<List<OfferModel>?> offerCall() async {
     var response = await http.get(Uri.parse(baseUrl + "/Kampanyalar"));
 
     debugPrint("Response Status Code userCall: ${response.statusCode}");
@@ -178,7 +180,7 @@ class Service {
   }
 
 //Category
-  Future<List<CategoryItemModel>?> categoryCall() async {
+  static Future<List<CategoryItemModel>?> categoryCall() async {
     var response = await http.get(Uri.parse('$baseUrl/Kategoriler'));
 
     debugPrint("Response Status Code categoryCall: ${response.statusCode}");
@@ -198,7 +200,7 @@ class Service {
   }
 
 //KategoriyeGöreMenu
-  Future<List<MenuByCategoryModel>?> menuByCategoryCall(
+  static Future<List<MenuByCategoryModel>?> menuByCategoryCall(
     int Id,
   ) async {
     Map<String, dynamic> jsonData = {

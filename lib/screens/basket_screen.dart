@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/main.dart';
 
 class BasketScreen extends StatefulWidget {
@@ -10,6 +9,16 @@ class BasketScreen extends StatefulWidget {
 }
 
 class _BasketScreenState extends State<BasketScreen> {
+  double get totalPrice {
+    double out = 0;
+
+    for (var item in MyApp.basketList) {
+      out += item.fiyat ?? 0;
+    }
+
+    return out;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,27 +28,26 @@ class _BasketScreenState extends State<BasketScreen> {
           var item = MyApp.basketList[index];
 
           return ListTile(
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               radius: 32,
-              backgroundImage:
-                  NetworkImage("https://i.stack.imgur.com/l60Hf.png"),
+              backgroundImage: NetworkImage(
+                // buraya item.resimYolu gelecek
+                "https://i.stack.imgur.com/l60Hf.png",
+              ),
             ),
             title: Text(item.baslik ?? ''), // Ürün adı
             subtitle: Text(item.icerik ?? ''), // Ürün açıklaması
             trailing: Column(
               children: [
                 Flexible(child: Text((item.fiyat ?? 0.0).toString())),
-                Flexible(
-                    child: SizedBox(
-                  height: 8,
-                )),
+                const Flexible(child: SizedBox(height: 8)),
                 Flexible(
                   child: ElevatedButton(
                     onPressed: () {
                       MyApp.basketList.remove(item);
                       setState(() {});
                     },
-                    child: Text("Çıkar"),
+                    child: const Text("Çıkar"),
                   ),
                 ),
               ],
@@ -48,22 +56,22 @@ class _BasketScreenState extends State<BasketScreen> {
         },
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Container(
+        child: SizedBox(
           height: 50.0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(left: 15.0),
-                child: Text('Toplam: ₺100'), // Sepet toplam tutarı
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Text('Toplam: ₺$totalPrice'), // Sepet toplam tutarı
               ),
               Padding(
-                padding: EdgeInsets.only(right: 15.0),
+                padding: const EdgeInsets.only(right: 15.0),
                 child: ElevatedButton(
                   onPressed: () {
                     // Ödeme işlemi
                   },
-                  child: Text('Siparişi Gönder'),
+                  child: const Text('Siparişi Gönder'),
                 ),
               ),
             ],

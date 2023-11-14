@@ -9,20 +9,16 @@ class OfferScreen extends ConsumerStatefulWidget {
   });
 
   @override
+  void initState() {
+    bool _pageAnn = true;
+  }
+
+  @override
   ConsumerState<ConsumerStatefulWidget> createState() => _OfferScreenState();
 }
 
 class _OfferScreenState extends ConsumerState<OfferScreen> {
   bool _ishidden = true;
-  bool _pageAnn = true;
-
-  void _toggleVisibility() {
-    setState(
-      () {
-        _ishidden = !_ishidden;
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +42,7 @@ class _OfferScreenState extends ConsumerState<OfferScreen> {
           );
         } else {
           var offers = snapshot.data!;
-          return ListView.builder(
+          return Expanded(child: ListView.builder(
             itemCount: offers.length,
             itemBuilder: (context, index) {
               var offer = offers[index];
@@ -64,7 +60,7 @@ class _OfferScreenState extends ConsumerState<OfferScreen> {
                 ),
               );
             },
-          );
+          ),);
         }
       },
     );

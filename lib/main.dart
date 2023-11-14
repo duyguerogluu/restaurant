@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/loginPage/login_page.dart';
+import 'package:restaurant/screens/base_scafold.dart';
 import 'package:restaurant/screens/offer_screen.dart';
 import 'package:restaurant/screens/splash_screen.dart';
 

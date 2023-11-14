@@ -13,7 +13,6 @@ import 'package:restaurant/service/service.dart';
 
 class LoginRiverpod extends ChangeNotifier {
   BuildContext? context;
-  final service = Service();
   TextEditingController telNo = TextEditingController();
   TextEditingController passwprd = TextEditingController();
   final box = GetStorage();
@@ -22,7 +21,7 @@ class LoginRiverpod extends ChangeNotifier {
   Future<bool?> fetchLogin() async {
     log("fetchLogin  çalıştı. Tel: ${telNo.text} Pass: ${passwprd.text}");
     loadingPopup();
-    return await service
+    return await Service
         .loginCall(telNo: telNo.text, password: passwprd.text)
         .then((LoginModel? loginModel) {
       if (loginModel?.isError != false && loginModel?.adi != "") {

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/riverpod/riverpod_management.dart';
 
-class SignupPage extends StatefulWidget {
+class SignupPage extends ConsumerStatefulWidget {
   @override
   _SignupPageState createState() => _SignupPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _SignupPageState extends ConsumerState<SignupPage> {
   bool _ishidden = true;
   bool isProcessing = false;
   bool _pageLogin = true;
@@ -26,6 +27,8 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    var model = ref.read(signup);
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -67,7 +70,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                           child: TextFormField(
-                            controller: signup.adi,
+                            controller: model.adi,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
                                 color: Color.fromRGBO(143, 148, 251, 1)),
@@ -78,6 +81,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                         ),
+                       
                         Container(
                           padding: const EdgeInsets.all(4.0),
                           decoration: BoxDecoration(
@@ -88,7 +92,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                           child: TextFormField(
-                            controller: signup.soyadi,
+                            controller: model.soyadi,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
                                 color: Color.fromRGBO(143, 148, 251, 1)),
@@ -99,6 +103,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                         ),
+                       
                         Container(
                           padding: const EdgeInsets.all(4.0),
                           decoration: BoxDecoration(
@@ -109,7 +114,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                           child: TextFormField(
-                            controller: signup.telefon,
+                            controller: model.telefon,
                             keyboardType: TextInputType.phone,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
@@ -132,7 +137,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                           child: TextFormField(
-                            controller: signup.email,
+                            controller: model.email,
                             keyboardType: TextInputType.emailAddress,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
@@ -155,7 +160,7 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                             ),
                             child: TextFormField(
-                              controller: signup.sifre,
+                              controller: model.sifre,
                               cursorColor: Colors.purpleAccent,
                               obscureText: _ishidden ? true : false,
                               style: TextStyle(
@@ -181,11 +186,9 @@ class _SignupPageState extends State<SignupPage> {
                 ],
               ),
             ),
-
             const SizedBox(
               height: 30,
             ),
-
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: ElevatedButton(
@@ -195,7 +198,7 @@ class _SignupPageState extends State<SignupPage> {
                         setState(() {
                           isProcessing = true;
                         });
-                        await signup.fetchSignup(context);
+                        await model.fetchSignup(context);
                         setState(() {
                           isProcessing = false;
                         });
@@ -223,8 +226,6 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
             ),
-
- 
           ],
         ),
       ),
