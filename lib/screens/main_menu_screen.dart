@@ -30,6 +30,7 @@ class MainMenuScreen extends ConsumerWidget {
               );
             } else {
               var categories = snapshot.data!;
+             
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -89,6 +90,7 @@ class MainMenuScreen extends ConsumerWidget {
                   );
                 },
               );
+
             }
           },
         ),

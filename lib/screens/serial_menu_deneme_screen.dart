@@ -175,6 +175,24 @@ class SerialMenuScreen extends ConsumerWidget {
                                             debugPrint('Ürün sepete eklendi!');
 
                                             MyApp.basketList.add(model);
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                              content:
+                                                  const Text('Sepete Eklendi'),
+                                              duration:
+                                                  const Duration(seconds: 3),
+                                              action: SnackBarAction(
+                                                label: 'SEPETE GİT',
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            BasketScreen()),
+                                                  );
+                                                },
+                                              ),
+                                            ));
 
 /*
                                             var basket =
@@ -183,12 +201,6 @@ class SerialMenuScreen extends ConsumerWidget {
                                              BasketRiverpod basketRiverpod = context.read<BasketRiverpod>();
 basketRiverpod.basketList = [...basketRiverpod.basketList];
 */
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      BasketScreen()),
-                                            );
                                           },
                                           style: ElevatedButton.styleFrom(
                                               // shape: RoundedRectangleBorder(
@@ -202,7 +214,7 @@ basketRiverpod.basketList = [...basketRiverpod.basketList];
                                               children: [
                                                 // Icon(Icons.shopping_cart),
                                                 // SizedBox(width: 8),
-                                                Text('Siparişi Ver'),
+                                                Text('Sepete Ekle'),
                                               ],
                                             ),
                                           ),

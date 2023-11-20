@@ -9,6 +9,7 @@ import 'package:restaurant/models/menu_by_category_model.dart';
 import 'package:restaurant/models/offer_model.dart';
 import 'package:restaurant/models/signup_model.dart';
 import 'package:restaurant/models/user_model.dart';
+import 'package:restaurant/models/user_order_model.dart';
 import 'package:restaurant/url/url.dart';
 
 class Service {
@@ -73,7 +74,7 @@ class Service {
         },
         {
           "username": "acarfx",
-          "content": "#ictimSarabiDiririirin Veriyom Yaraği @acarfx",
+          "content": "",
           "images": ["b264773d-e4ac-4a09-b17d-0b88f9c5a0e8.jpg"],
           "tags": ["#ictimSarabiDiririirin"],
           "mentions": ["acarfx"],
@@ -229,5 +230,24 @@ class Service {
       debugPrint("Response Status Code signupCall: ${response.statusCode}");
       return null;
     }
-  } 
+  }
+
+//userOrder
+  static Future<List<UserOrderModel>?> userOrderCall(
+      {required String KullaniciID, required String telNo}) async {
+    Map<String, dynamic> jsonData = {
+      "Fiyat": telNo,
+      "Indirim": 0,
+      "IndirimTipiFiyat": false,
+      "SiparisTarihi": "2023-11-17",
+    };
+
+    var response = await http.post(
+      Uri.parse(baseUrl + "/KullaniciSiparis"),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(jsonData),
+    );
+  }
 }
