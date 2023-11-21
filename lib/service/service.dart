@@ -234,12 +234,14 @@ class Service {
 
 //userOrder
   static Future<List<UserOrderModel>?> userOrderCall(
-      {required String KullaniciID, required String telNo}) async {
+      {required double fiyat}) async {
     Map<String, dynamic> jsonData = {
-      "Fiyat": telNo,
+      "Fiyat": fiyat,
       "Indirim": 0,
-      "IndirimTipiFiyat": false,
+      "IndirimTipiFiyat": "false",
       "SiparisTarihi": "2023-11-17",
+      "Enlem": "33,40230812",
+      "Boylam": "36,508392403"
     };
 
     var response = await http.post(
@@ -249,5 +251,18 @@ class Service {
       },
       body: jsonEncode(jsonData),
     );
+
+    debugPrint("Response Status Code categoryCall: ${response.statusCode}");
+    debugPrint("Response Body: ${response.body}");
+
+    if (response.statusCode == 200 &&
+        response.body != "null" &&
+        jsonDecode(response.body)['Sonuc']) {
+      debugPrint("Response Body: ${response.body}");
+      debugPrint("Response Status Code signupCall: ${response.statusCode}");
+      debugPrint("Sipariş verildi mi? $jsonDecode(response.body)['Sonuc']");
+
+      return jsonDecode(response.body)['Sonuc'];
+    }
   }
 }
