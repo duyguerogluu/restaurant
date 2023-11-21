@@ -8,6 +8,7 @@ import 'package:restaurant/riverpod/login_riverpod.dart';
 import 'package:restaurant/riverpod/menu_by_category_riverpod.dart';
 import 'package:restaurant/riverpod/offer_riverpod.dart';
 import 'package:restaurant/riverpod/signup_riverpod.dart';
+import 'package:restaurant/riverpod/user_order_riverpod.dart';
 
 final fooddetailRiverpod = ChangeNotifierProvider((_) => FoodDetailRiverpod());
 final bottomNavBarRiverpod =
@@ -19,3 +20,4 @@ final offer = OfferRiverpod();
 final menuByCategory = MenuByCategoryRiverpod();
 final basketRiverpodd = ChangeNotifierProvider((_) => BasketRiverpod());
 final signup = ChangeNotifierProvider((_) => SignupRiverpod());
+final userOrder = ChangeNotifierProvider((_) => UserOrderRiverpod());

@@ -57,7 +57,7 @@ class BottomNavBarRiverpod extends ChangeNotifier {
         return const SizedBox();
       case 2:
         return IconButton(
-          icon: const Icon(Icons.notifications),
+          icon: const Icon(Icons.notifications , color: Color.fromARGB(255, 253, 210, 92),),
           onPressed: () {
             DuyguNav.push(const AnnouncementScreen());
           },
@@ -65,7 +65,7 @@ class BottomNavBarRiverpod extends ChangeNotifier {
       case 0:
       default:
         return IconButton(
-          icon: const Icon(Icons.notifications),
+          icon: const Icon(Icons.notifications , color: Color.fromARGB(255, 253, 210, 92),),
           onPressed: () {
             DuyguNav.push(const AnnouncementScreen());
           },

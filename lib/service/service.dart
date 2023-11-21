@@ -233,8 +233,7 @@ class Service {
   }
 
 //userOrder
-  static Future<List<UserOrderModel>?> userOrderCall(
-      {required double fiyat}) async {
+  static Future<UserOrderModel?> userOrderCall({required double fiyat}) async {
     Map<String, dynamic> jsonData = {
       "Fiyat": fiyat,
       "Indirim": 0,

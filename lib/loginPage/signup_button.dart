@@ -23,7 +23,7 @@ class SignupButton extends StatelessWidget {
             child: Text(
               "Kaydol",
               style: TextStyle(
-                color: Color.fromRGBO(95, 68, 171, 0.6),
+                color: Color.fromARGB(255, 253, 210, 92),
                 fontWeight: FontWeight.bold,
               ),
             ),

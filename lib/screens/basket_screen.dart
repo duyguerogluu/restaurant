@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/main.dart';
+import 'package:restaurant/riverpod/riverpod_management.dart';
 
-class BasketScreen extends StatefulWidget {
-  const BasketScreen({super.key});
+class BasketScreen extends ConsumerStatefulWidget {
+  const BasketScreen({Key? key}) : super(key: key);
 
   @override
-  State<BasketScreen> createState() => _BasketScreenState();
+  _BasketScreenState createState() => _BasketScreenState();
 }
 
-class _BasketScreenState extends State<BasketScreen> {
-  double get totalPrice {
-    double out = 0;
-
-    for (var item in MyApp.basketList) {
-      out += item.fiyat ?? 0;
-    }
-
-    return out;
-  }
-
+class _BasketScreenState extends ConsumerState<BasketScreen> {
   @override
   Widget build(BuildContext context) {
+    var watch = ref.watch(userOrder);
+    var read = ref.read(userOrder);
     return Scaffold(
       body: ListView.builder(
-        itemCount: MyApp.basketList.length, // Örnek ürün sayısı
+        itemCount: MyApp.basketList.length,
         itemBuilder: (BuildContext context, int index) {
           var item = MyApp.basketList[index];
 
@@ -35,23 +29,28 @@ class _BasketScreenState extends State<BasketScreen> {
                 "https://i.stack.imgur.com/l60Hf.png",
               ),
             ),
-            title: Text(item.baslik ?? ''), // Ürün adı
-            subtitle: Text(item.icerik ?? ''), // Ürün açıklaması
+            title: Text(item.baslik ?? ''),
+            subtitle: Text(item.icerik ?? ''),
             trailing: Column(
               children: [
-                Flexible(child: Text((item.fiyat ?? 0.0).toString())),
-                const Flexible(child: SizedBox(height: 8)),
                 Flexible(
+                  flex: 2,
+                  child: Text((item.fiyat ?? 0.0).toString()),
+                ),
+                Flexible(child: const SizedBox(height: 8)),
+                Flexible(
+                  flex: 3,
                   child: ElevatedButton(
                     onPressed: () {
                       MyApp.basketList.remove(item);
-                      setState(() {});
+                      setState(
+                          () {}); // setState gerekmiyor, çünkü ConsumerWidget kullanıyoruz
                     },
                     child: const Text("Çıkar"),
                   ),
                 ),
               ],
-            ), // Ürün fiyatı
+            ),
           );
         },
       ),
@@ -63,15 +62,18 @@ class _BasketScreenState extends State<BasketScreen> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
-                child: Text('Toplam: ₺$totalPrice'), // Sepet toplam tutarı
+                child: Text('Toplam: ₺${read.totalPrice.toDouble()}' ?? '0.0'),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 15.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Ödeme işlemi
+                    watch.getUserOrder();
                   },
-                  child: const Text('Siparişi Gönder'),
+                  child: const Text(
+                    'Siparişi Gönder',
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
               ),
             ],

@@ -41,7 +41,7 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     primary: _pageAnn
-                        ? const Color.fromRGBO(143, 148, 251, 1)
+                        ? const Color.fromARGB(255, 253, 210, 92)
                         : Colors.transparent,
                     onPrimary: Colors.transparent,
                     padding: const EdgeInsets.symmetric(
@@ -68,7 +68,7 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: _pageAnn
                         ? Colors.transparent
-                        : const Color.fromRGBO(143, 148, 251, 1),
+                        : const Color.fromARGB(255, 253, 210, 92),
                     onPrimary: Colors.transparent,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 15),

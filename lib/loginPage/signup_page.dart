@@ -73,7 +73,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                             controller: model.adi,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
+                                color: Color.fromARGB(255, 253, 210, 92)),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Ad",
@@ -95,7 +95,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                             controller: model.soyadi,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
+                                color: Color.fromARGB(255, 253, 210, 92)),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Soyad",
@@ -118,7 +118,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                             keyboardType: TextInputType.phone,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
+                                color: Color.fromARGB(255, 253, 210, 92)),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Telefon Numarası",
@@ -141,7 +141,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                             keyboardType: TextInputType.emailAddress,
                             cursorColor: Colors.purpleAccent,
                             style: const TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
+                                color: Color.fromARGB(255, 253, 210, 92)),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Email Adres",
@@ -164,7 +164,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                               cursorColor: Colors.purpleAccent,
                               obscureText: _ishidden ? true : false,
                               style: TextStyle(
-                                  color: Color.fromRGBO(143, 148, 251, 1)),
+                                  color: Color.fromARGB(255, 253, 210, 92)),
                               decoration: InputDecoration(
                                 suffixIcon: IconButton(
                                   icon: Icon(_ishidden
@@ -205,7 +205,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                       },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _pageLogin
-                      ? const Color.fromRGBO(143, 148, 251, 1)
+                      ? const Color.fromARGB(255, 253, 210, 92)
                       : Colors.transparent,
                   primary: Colors.transparent,
                   onPrimary: Colors.transparent,

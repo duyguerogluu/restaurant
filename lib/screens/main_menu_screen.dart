@@ -52,6 +52,7 @@ class MainMenuScreen extends ConsumerWidget {
                           );
                         },
                         child: Card(
+                          color: Color.fromARGB(255, 253, 210, 92),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24),
                           ),

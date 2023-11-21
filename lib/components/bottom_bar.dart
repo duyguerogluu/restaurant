@@ -11,6 +11,7 @@ class BottomNavBar extends ConsumerWidget {
     var watch = ref.watch(bottomNavBarRiverpod);
     var read = ref.read(bottomNavBarRiverpod);
     return BottomNavigationBar(
+      backgroundColor: Color.fromARGB(255, 253, 210, 92).withOpacity(1),
       items: read.items,
       currentIndex: watch.currentIndex,
       onTap: (index) => read.setCurrentIndex(index),

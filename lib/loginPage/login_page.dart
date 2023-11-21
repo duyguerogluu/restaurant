@@ -52,11 +52,12 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: SizedBox(
-                    height: deviceHeight * 0.1,
-                    child: Image.network(
-                        "https://logomaker.designfreelogoonline.com/media/productdesigner/logo/resized/1286_bird-01.png"),
+                    height: deviceHeight * 0.18,
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                    ),
                   ),
                 ),
                 //buttonlarım
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: _pageLogin
-                            ? const Color.fromRGBO(143, 148, 251, 1)
+                            ? Color.fromARGB(255, 253, 210, 92)
                             : Colors.transparent,
                         primary: Colors.transparent,
                         onPrimary: Colors.transparent,
@@ -81,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       child: Text(
-                        'Login',
+                        'Giriş',
                         style: TextStyle(
                           fontSize: 18,
                           color: _pageLogin
@@ -103,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: _pageLogin
                             ? Colors.transparent
-                            : Color.fromRGBO(143, 148, 251, 1),
+                            : Color.fromARGB(255, 253, 210, 92),
                         primary: Colors.transparent,
                         onPrimary: Colors.transparent,
                         padding: const EdgeInsets.symmetric(
@@ -113,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       child: Text(
-                        'Register',
+                        'Kayıt Ol',
                         style: TextStyle(
                             fontSize: 18,
                             color: _pageLogin
@@ -158,8 +159,8 @@ class _LoginPageState extends State<LoginPage> {
                                       controller: login.telNo,
                                       cursorColor: Colors.purpleAccent,
                                       style: const TextStyle(
-                                          color:
-                                              Color.fromRGBO(143, 148, 251, 1)),
+                                          color: Color.fromARGB(
+                                              255, 253, 210, 92)),
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Phone number",
@@ -177,8 +178,8 @@ class _LoginPageState extends State<LoginPage> {
                                       cursorColor: Colors.purpleAccent,
                                       obscureText: _ishidden ? true : false,
                                       style: const TextStyle(
-                                          color:
-                                              Color.fromRGBO(143, 148, 251, 1)),
+                                          color: Color.fromARGB(
+                                              255, 253, 210, 92)),
                                       decoration: InputDecoration(
                                         suffixIcon: IconButton(
                                           icon: Icon(_ishidden
@@ -220,7 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: _pageLogin
-                                      ? const Color.fromRGBO(143, 148, 251, 1)
+                                      ? Color.fromARGB(255, 253, 210, 92)
                                       : Colors.transparent,
                                   primary: Colors.transparent,
                                   onPrimary: Colors.transparent,
@@ -250,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                                   'Şifremi Unuttum',
                                   style: TextStyle(
                                     color:
-                                        const Color.fromRGBO(143, 148, 251, 1),
+                                        const Color.fromARGB(255, 253, 210, 92),
                                     fontSize: 16,
                                   ),
                                 ),
