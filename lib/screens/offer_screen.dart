@@ -1,3 +1,20 @@
+/*
+ *  This file is part of restaurant.
+ *
+ *  restaurant is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  restaurant is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with restaurant.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/models/offer_model.dart';
@@ -42,25 +59,27 @@ class _OfferScreenState extends ConsumerState<OfferScreen> {
           );
         } else {
           var offers = snapshot.data!;
-          return Expanded(child: ListView.builder(
-            itemCount: offers.length,
-            itemBuilder: (context, index) {
-              var offer = offers[index];
+          return Expanded(
+            child: ListView.builder(
+              itemCount: offers.length,
+              itemBuilder: (context, index) {
+                var offer = offers[index];
 
-              return Card(
-                child: ListTile(
-                  title: Text(
-                    offer.baslik ?? '',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                return Card(
+                  child: ListTile(
+                    title: Text(
+                      offer.baslik ?? '',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
+                    subtitle: Text(offer.aciklama ?? ''),
                   ),
-                  subtitle: Text(offer.aciklama ?? ''),
-                ),
-              );
-            },
-          ),);
+                );
+              },
+            ),
+          );
         }
       },
     );
